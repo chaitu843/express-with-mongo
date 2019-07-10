@@ -1,55 +1,32 @@
 const express = require('express');
-const path = require('path');
 const mongoose = require('mongoose');
-
 const app = express();
 
-const members = require('./JSON/members');
-const PORT = process.env.port || 5000;
+// Connecting to MongoDB using mongoose
+mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true}).then(() => {
+  console.log('Connected to Mongo');
+}).catch(err => {
+  console.log(err);
+});
 
+let TestModel = mongoose.model('test', new mongoose.Schema({
+  name: String,
+  email: String
+},{
+  strict: false
+}),'created');
 
-app.use(express.json());
-app.get('/api', (req, res) => {
-  res.json(members.filter(member => member.id === parseInt(req.query.id)));
+TestModel.find().exec().then(docs => {
+  console.log(docs);
 })
 
-// Get all members
-app.get('/', (req,res) => {
-    res.json(members);
-})
+let testModel = new TestModel({
+  'name' : '3',
+  'height' : '5/6'
+});
 
-// get specific member
-app.get('/:id', (req, res) => {
-  res.json(members.filter(member => member.id === parseInt(req.params.id)));
-})
-
-// update a member
-app.put('/:id', (req, res) => {
-  console.log(req.body);
-  res.json(members.map(member => {
-    if(member.id === parseInt(req.params.id)){
-      return {
-        ...member,
-        email: req.body.email,
-      }
-    } else return member;
-  }))
-})
-// post a member
-app.post('/', (req, res) => {
-  members.push({
-    "name" : req.body.name,
-    "email" : req.body.email
-  })
-
-  res.json(members);
-})
-
-// delete a member
-app.delete('/:id', (req, res) => {
-  res.json(members.filter(member => member.id !== parseInt(req.params.id)));
-})
-
-app.listen(PORT, () => {
-     console.log(`listening to port ${PORT}`);
+testModel.save().then(item => console.log('saved to database')).catch(err => console.log(err));
+// Listening to port number 5000
+app.listen(5000, () => {
+  console.log('Listening to port 5000');
 })
