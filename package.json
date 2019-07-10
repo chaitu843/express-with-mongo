@@ -1,7 +1,7 @@
 {
   "name": "express-with-mongo",
   "version": "1.0.0",
-  "description": "REST API with Express and Mongooose",
+  "description": "REST API with Express and Mongooose (Express Beginner, MongoDB and Mongoogse Beginner Connection to MongoDB locally)",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -14,7 +14,8 @@
   "keywords": [
     "Node",
     "Express",
-    "MongoDB"
+    "MongoDB",
+    "Mongoose"
   ],
   "author": "ChaY",
   "license": "ISC",
