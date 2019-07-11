@@ -46,3 +46,9 @@ Working with Mongoose --> Observations -
 5. If specified collection is not present in database, Collection with given name is being created.
 
 6. Now, coming to schema restriction --> Saving the fields which are not mentioned in schema can be acheived by setting schemaOptions.strict to false.
+
+=================================================================
+
+Working with MongoDB ATLAS cloud (Inorder to deploy)
+
+===================================================================
