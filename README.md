@@ -52,3 +52,9 @@ Working with Mongoose --> Observations -
 Working with MongoDB ATLAS cloud (Inorder to deploy)
 
 ===================================================================
+
+1. To save a doc with custom id, pass _id in schemaDefinition and can also set _id to false in defining schemaOptions.
+
+2. To execute a mongo query, callback function or exec() is mandatory.
+
+3. Used express.json() to parse incoming JSON request.
